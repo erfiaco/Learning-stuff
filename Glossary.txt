@@ -22,9 +22,15 @@ Command is an action to be taken, while flags are parameter after the command, a
 *mkdir: creates directory
 *rm: removes
 *git init: initialize folder so we can monitorize changes inside it
-*git add filename: starts tracking the file. Once we track it we can stage it to commit. Adds the files in the local repository and stages them for commit. To unstage a file, use 'git reset HEAD YOUR-FILE'.
-*git reset filename: untracks the already added file.
-
+*git add filename: starts tracking the file. Once we track it we can stage it to commit.
+*git reset filename: To unstage a file, use 'git reset HEAD YOUR-FILE'.
+*git add .: Adds the files in the local repository and stages them for commit.
+*git add _n deals with all changes to files deleting or changing names
+*git commit -m 'message' this updates my local repo and keeps track of intermediate versions.
+*git remote add origin server: connects an existing remote repository to the current local repository (the server is written as http://github.com/erfiaco/Learning_stuff.git)
+*git remote -v: checks the remote repository connected to the local
+*git remote rm destination: note. if i play the latter command it may show me destination and a server: it indicates when my local is a destination repository from a forkk for example
+*git remote rm origin: removes the remote from your local. Does not delets the repository from the server.
 *date
 *echo: prints
 
