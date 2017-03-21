@@ -33,4 +33,6 @@ Command is an action to be taken, while flags are parameter after the command, a
 *git remote rm origin: removes the remote from your local. Does not delets the repository from the server.
 *date
 *echo: prints
-
+*git push origin master: pushed commits to remote
+*git add -n stages name changes
+*git add -A stages name changes and changes in file contemporary
