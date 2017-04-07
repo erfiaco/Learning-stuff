@@ -2,6 +2,10 @@
 A<-cbind(Nombre=c("Victoria", "Javier", "Virginia", "Violeta"), Equipo=c("Madrid", NA, "Barcelona", 0))
 A<-as.data.frame(A)
 
+#Even if it's a dataframe, it's columns are factors, so we change them:
+i <- sapply(A, is.factor)
+A[i] <- lapply(A[i], as.character)
+
 #I want to create a subset of centain rows that meet one condition, they are inside a specified vector:
 
 A_<-A[A$Nombre %in% c("Ivanka","Virginia","Violeta"),]
