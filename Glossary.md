@@ -1,4 +1,5 @@
 #GIT Glossary
+
 *For the whole glossary [follow the link!](https://help.github.com/articles/github-glossary/)*
 
 ##Git
@@ -16,6 +17,7 @@ Tool that allws you to navigate easily inside directories in your PC is almost t
 ##Command, flags and arguments
 Command is an action to be taken, while flags are parameter after the command, and argument is what the command is going to modify
 *pwd: gives me the current directory
+*git status
 *ls: list files & folders in c.d. ls_a lists also hidden f&f. ls_al list also details. Note a & l are both flags that can be conbined
 *cd namefile: changes the directory to the file located inside the cd.
 *cd ~/namefile: changes directory to a file located in the parent directory
@@ -24,9 +26,9 @@ Command is an action to be taken, while flags are parameter after the command, a
 *git init: initialize folder so we can monitorize changes inside it
 *git add filename: starts tracking the file. Once we track it we can stage it to commit.
 *git reset filename: To unstage a file, use 'git reset HEAD YOUR-FILE'.
-*git add .: Adds the files in the local repository and stages them for commit.
+*git add .: Adds all the files in the local repository and stages them for commit.
 *git add _n deals with all changes to files deleting or changing names
-*git commit -m 'message' this updates my local repo and keeps track of intermediate versions.
+*git commit -m "message" this updates my local repo and keeps track of intermediate versions.
 *git remote add origin server: connects an existing remote repository to the current local repository (the server is written as http://github.com/erfiaco/Learning_stuff.git)
 *git remote -v: checks the remote repository connected to the local
 *git remote rm destination: note. if i play the latter command it may show me destination and a server: it indicates when my local is a destination repository from a forkk for example
@@ -36,3 +38,4 @@ Command is an action to be taken, while flags are parameter after the command, a
 *git push origin master: pushed commits to remote
 *git add -n stages name changes
 *git add -A stages name changes and changes in file contemporary
+*git touch new.md: creates a new file
