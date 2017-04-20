@@ -1,0 +1,28 @@
+my_vector<-1:20
+dim(my_vector)
+NULL
+
+Since my_vector is a vector, it doesn't have a `dim` attribute (so it's just NULL)
+
+dim(my_vector) <- c(4, 5) # Now we set a dim attribute to my_vector and assigne the value c(4,5)
+
+Now we created a matrix out of a vector, a matrix is a vector with DIM attribute. We can also create a matrix with the command:
+
+my_matrix2<-matrix(data=1:20,nrow = 4,ncol = 5,byrow=FALSE)
+
+We can confirm that they are identical:
+identical(my_matrix,my_matrix2)
+
+If you wqant to add a column with Patients names, you shouldn't do it with cbind, otherwise implicit coercion will coerce numbers to character in matrix. we should do it:
+
+patients<-c("Bill", "Gina", "Kelly","Sean")
+
+my_data <- data.frame(patients, my_matrix)
+
+cnames<-c("patient", "age", "weight", "bp", "rating", "test")
+colnames(my_data)<-cnames
+
+
+
+
+

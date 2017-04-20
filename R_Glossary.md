@@ -1,4 +1,10 @@
+
+
 #Create Data Frame
+
+A<-data.frame(Nombre=c("Victoria", "Javier", "Virginia", "Violeta", "Victoria"), Equipo=c("Madrid", NA, "Barcelona", 0,"Barcelona"), Sexo=c("f","m",NA,"f","f"), stringsAsFactors = F)
+
+ALSO
 A<-cbind(Nombre=c("Victoria", "Javier", "Virginia", "Violeta"), Equipo=c("Madrid", NA, "Barcelona", 0))
 A<-as.data.frame(A)
 
@@ -14,7 +20,9 @@ A_<-A[A$Nombre %in% c("Ivanka","Virginia","Violeta"),]
 3 Virginia Barcelona
 4  Violeta         0
 
-# The difference between %in% and == arise when in the column we are looking for matching variables there is an NA
+# The difference between %in% and == arise when in the column we are looking for matching variables there is an NA.
+
+Remembre that NA is not a value, but rather a placeholder for an unknown quantity, the expression NA > 0 evaluates to NA.
 
 A[A$Equipo == "Barcelona" | A$Equipo == "Betis",]
 
@@ -56,3 +64,14 @@ NA     <NA>   <NA>
 4   Violeta      0
 
 #The second one doesn't brings me the NA.
+
+#It is often helpful to save the settings that you had before you began an analysis and then go back to them at the end. This trick is often used within functions; you save, say, the par() settings that you started with, mess around a bunch, and then set them back to the original values at the end. You can do that initially by saving the initial directory like : old.dir<-getwd()
+
+#'Take nothing but pictures. Leave nothing but footprints.' It means, create the code that will do all the intermediary work, at the end of it you'll have: the initial file, and the results, and all the things that you created to archive this goal must be gone.
+
+%in% is preferible to == in corporate environment, since R recognizes NA as the statistical "not available" which boundaries are well defined, not the case of "blank" values or even NA defined in corporate environments (by non staticians).
+
+worth noting:
+
+x[c(2, 10)] gives us ONLY the 2nd and 10th elements of x, x[c(-2, -10)] gives us all elements of x EXCEPT for the 2nd and 10 elements.
+Also: x[-c(2, 10)]

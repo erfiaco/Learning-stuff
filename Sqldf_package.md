@@ -1,10 +1,20 @@
+
+
+
 #Create Data Frame
+
+More simple:
+A<-data.frame(Nombre=c("Victoria", "Javier", "Virginia", "Violeta", "Victoria"), Equipo=c("Madrid", NA, "Barcelona", 0,"Barcelona"), Sexo=c("f","m",NA,"f","f"), stringsAsFactors = F)
+
+ALSO
+
 A<-cbind(Nombre=c("Victoria", "Javier", "Virginia", "Violeta", "Victoria"), Equipo=c("Madrid", NA, "Barcelona", 0,"Barcelona"), Sexo=c("f","m",NA,"f","f"))
 A<-as.data.frame(A)
 
 #Even if it's a dataframe, it's columns are factors, so we change them:
 i <- sapply(A, is.factor)
 A[i] <- lapply(A[i], as.character)
+
 
 
   Nombre    Equipo Sexo
@@ -54,3 +64,28 @@ A[2,2]<-NA
 	  Nombre count(Sexo)
 	1 Javier   
 
+What if the field in the where clause has NA? Sqldj won't count or consider any case that has NA, unless you specify IS NULL:
+
+ A
+    Nombre    Equipo Sexo
+1 Victoria    Madrid     
+2   Javier      <NA>     
+3 Virginia Barcelona     
+4  Violeta         0    f
+5 Victoria Barcelona    f
+
+> sqldf("select Sexo, count(Nombre) from A WHERE Equipo = 'Barcelona' group by Sexo")
+  Sexo count(Nombre)
+1                  1
+2    f             1
+#In the following command I would have expected 3 counts of NOMBRE, since three of them are not BCN, but one is NA:
+> sqldf("select Sexo, count(Nombre) from A WHERE Equipo <> 'Barcelona' group by Sexo")
+  Sexo count(Nombre)
+1                  1
+2    f             1
+
+# So you fix it this way:
+sqldf("select Sexo, count(Nombre) from A WHERE Equipo <> 'Barcelona' OR Equipo is NULL group by Sexo")
+  Sexo count(Nombre)
+1                  2
+2    f             1

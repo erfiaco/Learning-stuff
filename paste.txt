@@ -1,0 +1,16 @@
+We have two type of vectors: atomic vectors (one class only) and lists.
+
+Atomic vectors can have 5 classes: numeric,logical, character, integer, and complex
+
+Logical can contain T, F, NA, and they are the result of logical conditions
+
+
+
+my_char<-c("My","name","is")
+
+"My"   "name" "is"
+
+paste(my_char, collapse = " ")
+[1] "My name is"
+
+paste("Hello", "world!", sep=" ")

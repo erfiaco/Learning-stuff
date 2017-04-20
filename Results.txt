@@ -1,0 +1,26 @@
+nrow(old, new)
+"422146 452544"
+
+Old
+ FALSE   TRUE 
+302197 119942 
+
+NEW
+FALSE   TRUE 
+305035 147509 
+
+#DBOLD is the old database
+DbOLD<-read.xlsx("AllDataBase.xlsx")
+
+#Db is the new Database
+
+Austria<-Dbold[Dbold$Account_SEGMENT__C=="Austria",]
+newAustria<-Austria[duplicated(Austria$Account_SELLBYTEL_ACCOUNT_ID__C),]
+table(newAustria$IbNib)
+
+#The Ib results for this operation are OK
+#FALSE  TRUE 
+#4887  3084 Being in the SC 4887 (NiB) and 3083 (Ib)
+
+
+dball<-sqldf("select dr.ini, dr.Account_SEGMENT__C, dr.MAIN_MARKET__C, dr.SUB_MARKET__C, count(distinct(dr.Account_SELLBYTEL_ACCOUNT_ID__C)) AS Company, count(distinct(dr.EMAIL)) AS Num_correos, SUM(dr.`equipment.status` = 'Active') AS Active, SUM(dr.`equipment.status` IN ('Inactive', 'Old')) AS Inactive, SUM(BRAND__C='HP') AS HP_Brand  from Dbold AS dr group by Account_SEGMENT__C, MAIN_MARKET__C, SUB_MARKET__C, ini")
