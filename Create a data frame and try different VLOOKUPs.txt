@@ -1,0 +1,57 @@
+#Create a datatable and explain to to a VLOOPUP in R
+# load sample data from Q
+hous <- read.table(header = TRUE, 
+                   stringsAsFactors = FALSE, 
+text="HouseType HouseTypeNo
+Semi            1
+Single          2
+Row             3
+Single          2
+Apartment       4
+Apartment       4
+Row             3")
+
+# create a lookup table to get the numbers to fill
+# the large table
+lookup <- unique(hous)
+  HouseType HouseTypeNo
+1      Semi           1
+2    Single           2
+3       Row           3
+5 Apartment           4
+
+# create a toy large table with a 'HouseType' column 
+# but no 'HouseTypeNo' column (yet)
+largetable <- data.frame(HouseType = as.character(sample(unique(hous$HouseType), 1000, replace = TRUE)), stringsAsFactors = FALSE)
+
+
+Here are four methods to fill the HouseTypeNo in the largetable using the values in the lookup table:
+
+First with merge in base:
+
+# 1. using base 
+base1 <- (merge(lookup, largetable, by = 'HouseType'))
+A second method with named vectors in base:
+
+# 2. using base and a named vector
+housenames <- as.numeric(1:length(unique(hous$HouseType)))
+names(housenames) <- unique(hous$HouseType)
+
+base2 <- data.frame(HouseType = largetable$HouseType,
+                    HouseTypeNo = (housenames[largetable$HouseType]))
+Third, using the plyr package:
+
+# 3. using the plyr package
+library(plyr)
+plyr1 <- join(largetable, lookup, by = "HouseType")
+Fourth, using the sqldf package
+
+# 4. using the sqldf package
+library(sqldf)
+sqldf1 <- sqldf("SELECT largetable.HouseType, lookup.HouseTypeNo
+FROM largetable
+INNER JOIN lookup
+ON largetable.HouseType = lookup.HouseType")
+If it's possible that some house types in largetable do not exist in lookup then a left join would be used:
+
+sqldf("select * from largetable left join lookup using (HouseType)")
